@@ -1,6 +1,9 @@
 // mod vars;
-mod string;
+// mod string;
+// mod tuples;
+// mod arrays;
+mod vectors;
 
 fn main() {
-    string::run();
+    vectors::run();
 }
