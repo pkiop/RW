@@ -15,12 +15,12 @@ pub enum Direction {
 
 #[derive(Debug)]
 pub struct SnakeGame {
-    width: usize,
-    height: usize,
-    snake: VecDeque<Position>, // first vector item is Head, last is Tail
-    direction: Direction,
-    food: Position,
-    finished: bool,
+    pub width: usize,
+    pub height: usize,
+    pub snake: VecDeque<Position>, // first vector item is Head, last is Tail
+    pub direction: Direction,
+    pub food: Position,
+    pub finished: bool,
 }
 
 impl SnakeGame {
