@@ -16,5 +16,5 @@ js-sys = "0.3.59"
 version = "0.3.59"
 features = [
   "Window" , "console", "Document", "Element", "HtmlElement",
-  "CssStyleDeclaration", "HtmlDivElement"
+  "CssStyleDeclaration", "HtmlDivElement", "KeyboardEvent"
 ] 

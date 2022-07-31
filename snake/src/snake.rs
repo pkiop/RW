@@ -1,7 +1,5 @@
-
 use crate::random::random_range;
 use std::collections::VecDeque;
-
 
 pub type Position = (usize, usize);
 
@@ -29,7 +27,7 @@ impl SnakeGame {
         Self {
             width,
             height,
-            snake: [((width - 2).min(0), height / 2)].into_iter().collect(),
+            snake: [((width - 2).max(0), height / 2)].into_iter().collect(),
             direction: Direction::Left,
             food: (2.min(width - 1), height / 2),
             finished: false,
@@ -55,17 +53,17 @@ impl SnakeGame {
     }
 
     pub fn tick(&mut self) {
-        if self.finished && self.snake.len() == 0 { 
+        if self.finished && self.snake.len() == 0 {
             return;
         }
 
         // let head = self.snake.get(0); // for memory safty (if length 0, snake[0] => occur error)
         let (x, y) = self.snake[0]; // for memory safty (if length 0, snake[0] => occur error)
         let new_head = match &self.direction {
-            Direction::Top => (x, y-1),
-            Direction::Right=> (x+1, y),
-            Direction::Bottom=> (x, y+1),
-            Direction::Left=> (x-1, y),
+            Direction::Top => (x, y - 1),
+            Direction::Right => (x + 1, y),
+            Direction::Bottom => (x, y + 1),
+            Direction::Left => (x - 1, y),
         };
 
         if !self.is_valid(new_head) || self.snake.contains(&new_head) {
@@ -75,7 +73,7 @@ impl SnakeGame {
                 self.snake.pop_back();
             } else {
                 let free_positions = (0..self.height)
-                    .flat_map(|y| (0..self.width).map(move |x| (x,y)))
+                    .flat_map(|y| (0..self.width).map(move |x| (x, y)))
                     .filter(|pos| !self.snake.contains(pos))
                     .collect::<Vec<_>>();
 
@@ -85,9 +83,8 @@ impl SnakeGame {
                 }
                 self.food = free_positions[random_range(0, free_positions.len())];
             }
-            self.snake.push_front((0,0));
+            self.snake.push_front(new_head);
         }
-
     }
 }
 
