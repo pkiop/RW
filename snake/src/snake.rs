@@ -3,7 +3,7 @@ use std::collections::VecDeque;
 
 pub type Position = (usize, usize);
 
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy)]
 pub enum Direction {
     Top,
     Right,
@@ -17,6 +17,7 @@ pub struct SnakeGame {
     pub height: usize,
     pub snake: VecDeque<Position>, // first vector item is Head, last is Tail
     pub direction: Direction,
+    next_direction: Direction,
     pub food: Position,
     pub finished: bool,
 }
@@ -28,6 +29,7 @@ impl SnakeGame {
             width,
             height,
             snake: [((width - 2).max(0), height / 2)].into_iter().collect(),
+            next_direction: Direction::Left,
             direction: Direction::Left,
             food: (2.min(width - 1), height / 2),
             finished: false,
@@ -35,6 +37,10 @@ impl SnakeGame {
     }
 
     pub fn change_direction(&mut self, direction: Direction) {
+        if self.finished {
+            return;
+        }
+
         match (&self.direction, direction) {
             (Direction::Top, Direction::Top)
             | (Direction::Top, Direction::Bottom)
@@ -44,7 +50,7 @@ impl SnakeGame {
             | (Direction::Bottom, Direction::Top)
             | (Direction::Left, Direction::Left)
             | (Direction::Left, Direction::Right) => {}
-            (_, direction) => self.direction = direction,
+            (_, direction) => self.next_direction = direction,
         }
     }
 
@@ -57,6 +63,7 @@ impl SnakeGame {
             return;
         }
 
+        self.direction = self.next_direction;
         // let head = self.snake.get(0); // for memory safty (if length 0, snake[0] => occur error)
         let (x, y) = self.snake[0]; // for memory safty (if length 0, snake[0] => occur error)
         let new_head = match &self.direction {

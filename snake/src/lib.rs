@@ -13,7 +13,7 @@ use web_sys::{
 
 thread_local! {
     static GAME: Rc<RefCell< SnakeGame>> = Rc::new(RefCell::new(SnakeGame::new(20, 20))); // Rc : reference counter
-    static TICK_CLOSURE: Closure<dyn FnMut()> = Closure::wrap(Box::new({
+    static HANDLE_TICK: Closure<dyn FnMut()> = Closure::wrap(Box::new({
         let game = GAME.with(|game| game.clone());
         move || {
             game.borrow_mut().tick();
@@ -43,12 +43,12 @@ thread_local! {
 pub fn main() {
     console::log_1(&"Starting ....".into());
 
-    TICK_CLOSURE.with(|tick_closure| {
+    HANDLE_TICK.with(|tick_closure| {
         window()
             .unwrap_throw()
             .set_interval_with_callback_and_timeout_and_arguments_0(
                 tick_closure.as_ref().dyn_ref::<Function>().unwrap_throw(),
-                500,
+                100,
             )
             .unwrap_throw();
     });
@@ -98,8 +98,12 @@ pub fn render() {
                 .dyn_into::<HtmlDivElement>()
                 .unwrap_throw();
             field_element.set_inner_text({
-                if pos == GAME.with(|game| game.borrow().food) {
+                if GAME.with(|game| game.borrow().finished) {
+                    "🐍"
+                } else if pos == GAME.with(|game| game.borrow().food) {
                     "🍎"
+                } else if GAME.with(|game| game.borrow().snake.get(0) == Some(&pos)) {
+                    "🐲"
                 } else if GAME.with(|game| game.borrow().snake.contains(&pos)) {
                     "🟩"
                 } else {
