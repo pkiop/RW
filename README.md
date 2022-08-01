@@ -9,3 +9,4 @@
 * [Compiling from Rust to WebAssembly
 ](https://developer.mozilla.org/en-US/docs/WebAssembly/Rust_to_wasm)
 * [yew](https://github.com/yewstack/yew) (Wasm framework for building client web apps)
+* [Rust book ](https://doc.rust-lang.org/book/)
