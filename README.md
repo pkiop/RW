@@ -10,6 +10,7 @@
 
 ### TODO
 
+* [Rust middle class lecture](https://www.youtube.com/watch?v=91LF1kZJj_o&list=PLlSZlNj22M7RSK23wBRLdgu8tdFbbMUqR&index=3)
 * [Compiling from Rust to WebAssembly
 ](https://developer.mozilla.org/en-US/docs/WebAssembly/Rust_to_wasm)
 * [yew](https://github.com/yewstack/yew) (Wasm framework for building client web apps)
