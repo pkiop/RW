@@ -21,11 +21,7 @@ fn main() {
     }
     let mut input_iter = input.split_ascii_whitespace();
 
-    let mut A = input_iter.next().unwrap().parse::<i32>().unwrap();
-    let mut B = input_iter.next().unwrap().parse::<i32>().unwrap();
-    println!("{}", A + B);
-    println!("{}", A - B);
-    println!("{}", A * B);
+    let mut A = input_iter.next().unwrap().parse::<f64>().unwrap();
+    let mut B = input_iter.next().unwrap().parse::<f64>().unwrap();
     println!("{}", A / B);
-    println!("{}", A % B);
 }
