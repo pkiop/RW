@@ -6,7 +6,7 @@
 
 ### Doing
 
-* [Rust book](https://doc.rust-lang.org/book/) ~Ch9
+* [Rust book](https://doc.rust-lang.org/book/) ~Ch10
 
 ### TODO
 
