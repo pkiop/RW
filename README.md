@@ -3,10 +3,12 @@
 
 * [Rust Crash Course](https://www.youtube.com/watch?v=zF34dRivLOw)
 * [Let's Code Snake with Rust and WASM](https://www.youtube.com/watch?v=iR7Q_6quwSI)
+* [Rust book](https://doc.rust-lang.org/book/) ~Ch20
 
 ### Doing
 
-* [Rust book](https://doc.rust-lang.org/book/) ~Ch10
+* LCR
+* Rust in Action
 
 ### TODO
 
